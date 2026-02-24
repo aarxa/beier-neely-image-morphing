@@ -2,7 +2,7 @@
 
 ## Overview
 This project implements the **Beier-Neely image morphing algorithm**, a feature-based warping technique for smooth transformation between two images.
-This work was completed as part of a **Computer Graphics** class at **Northeastern University**, and the overall project/codebase was course-based rather than entirely built from scratch by me.
+This work was completed as part of a **Computer Graphics** class under Crane He Chen at **Northeastern University**, and the overall project/codebase was course-based rather than entirely built from scratch by me.
 
 ## Approach
 The morphing pipeline has three steps:
