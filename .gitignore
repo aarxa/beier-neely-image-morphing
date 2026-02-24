@@ -1,0 +1,23 @@
+# OS / editor
+.DS_Store
+.vscode/
+
+# Build outputs
+build/
+cmake-build-*/
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+compile_commands.json
+
+# Local bundled dependencies (keep out of this project repo)
+eigen/
+libigl/
+polyscope/
+
+# Generated media/results
+result/
+
+# Large local artifacts
+*.zip

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Morphing - Assignment Summary</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        h1, h2, h3 {
+            color: #444;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+        .image-gallery img {
+            width: 100%;
+            max-width: 400px;
+            margin: 10px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Image Morphing - Assignment Summary</h1>
+    <h2>Overview</h2>
+    <p>This project implements the Beier-Neely image morphing algorithm, a feature-based warping technique that allows smooth transformation between two images.</p>
+
+    <h2>Approach</h2>
+    <p>The morphing process consists of three main steps:</p>
+    <ul>
+        <li><strong>Feature Line Interpolation:</strong> The keypoints in both images are interpolated based on a time step to create intermediate shapes.</li>
+        <li><strong>Warping:</strong> Each image is deformed using the interpolated features to align with the intermediate structure.</li>
+        <li><strong>Cross Dissolve:</strong> The warped images are blended together to create the final morphed frame.</li>
+    </ul>
+
+    <h2>Key Functions</h2>
+    <ul>
+        <li><strong>BeierNeelyMorph:</strong> Interpolates line segments, warps images, and performs cross dissolve.</li>
+        <li><strong>warp:</strong> Uses bilinear interpolation to adjust pixels based on feature lines.</li>
+        <li><strong>bilinearInterpolate:</strong> Ensures smooth pixel transitions by averaging neighboring pixels.</li>
+        <li><strong>CrossDissolve:</strong> Blends the warped images at each time step.</li>
+    </ul>
+
+    <h2>Visual Results</h2>
+    <div class="image-gallery">
+        <h3>Example Morphing Results</h3>
+        
+        <div class="output">
+            <img src="output/output1.gif" alt="Rotation output">
+            <p><strong>Rotation Output Line Segment Pairs:</strong></p>
+            <pre>
+                const Eigen::MatrixXd F_src = (Eigen::MatrixXd(1, 4) << 
+                    176, 83, 176, 232
+                ).finished();
+    
+                const Eigen::MatrixXd F_dest = (Eigen::MatrixXd(1, 4) << 
+                    149, 83, 21, 159
+                ).finished();
+            </pre>
+        </div>
+        
+        <div class="output">
+            <img src="output/output2.gif" alt="Translated output">
+            <p><strong>Translated Output Line Segment Pairs:</strong></p>
+            <pre>
+                const Eigen::MatrixXd F_src = (Eigen::MatrixXd(3, 4) << 
+                    177, 68, 177, 216,
+                    280, 68, 280, 97,
+                    271, 126, 270, 155
+                ).finished();
+    
+                const Eigen::MatrixXd F_dest = (Eigen::MatrixXd(3, 4) << 
+                    68, 68, 68, 216,
+                    171, 67, 171, 97, 
+                    162, 126, 162, 155
+                ).finished();
+            </pre>
+        </div>
+        
+        <div class="output">
+            <img src="output/output3.gif" alt="Translated scaled output">
+            <p><strong>Translated Scaled Output Line Segment Pairs:</strong></p>
+            <pre>
+                const Eigen::MatrixXd F_src = (Eigen::MatrixXd(5, 4) << 
+                    177, 68, 177, 216,
+                    280, 68, 280, 97,
+                    271, 126, 270, 155,
+                    211, 97, 211, 125, 
+                    211, 155, 211, 216
+                ).finished();
+        
+                const Eigen::MatrixXd F_dest = (Eigen::MatrixXd(5, 4) << 
+                    70, 87, 70, 203, 
+                    174, 87, 174, 111,
+                    165, 132, 165, 156,
+                    105, 111, 105, 132,
+                    105, 156, 105, 203
+                ).finished();
+            </pre>
+        </div>
+    
+        <div class="output">
+            <img src="output/output4.gif" alt="Scaled output">
+            <p><strong>Scaled Output Line Segment Pairs:</strong></p>
+            <pre>
+                const Eigen::MatrixXd F_src = (Eigen::MatrixXd(5, 4) << 
+                    177, 68, 177, 216,
+                    280, 68, 280, 97,
+                    271, 126, 270, 155,
+                    211, 97, 211, 125, 
+                    211, 155, 211, 216
+                ).finished();
+        
+                const Eigen::MatrixXd F_dest = (Eigen::MatrixXd(5, 4) << 
+                    77, 96, 77, 197,
+                    225, 96, 225, 116, 
+                    212, 135, 212, 156,
+                    127, 117, 127, 135, 
+                    127, 156, 127, 197,
+                ).finished();
+            </pre>
+        </div>
+    </div>
+
+    <h2>Art Contest Submission</h2>
+            <div class="video-container">
+                <p>I tried multiple images from my phone but for some reason I kept running into errors.
+                    I decided to go with a scene from my favorite animated movie "Mitchells vs Machines". Highly recommended!!
+                </p>
+                <p>Here is the final artistic morphing animation submitted for the contest:</p>
+                <pre>
+                    const Eigen::MatrixXd F_src = (Eigen::MatrixXd(2, 4) << 
+                        103, 90, 133, 90, 
+                        118, 114, 118, 205
+                    ).finished();
+        
+                    const Eigen::MatrixXd F_dest = (Eigen::MatrixXd(2, 4) << 
+                        97, 55, 141, 45, 
+                        105, 71, 118, 144
+                    ).finished();
+                </pre>
+                <video controls width="600">
+                    <source src="output/art contest.mp4" type="video/mp4">
+                    Your browser does not support the video tag.
+                </video>
+            </div>
+</div>
+
+</body>
+</html>
+
+
+
+        
