@@ -1,5 +1,6 @@
 # OS / editor
 .DS_Store
+Icon*
 .vscode/
 
 # Build outputs
